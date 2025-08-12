@@ -1,0 +1,53 @@
+# MCP Server Configuration
+# Define MCP servers that can be used by agents
+
+mcp_servers:
+  filesystem:
+    type: stdio
+    command: "npx"
+    args: 
+      - "-y"
+      - "@modelcontextprotocol/server-filesystem"
+      - "/tmp"
+    
+  github:
+    type: stdio
+    command: "npx"
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-github"
+    env:
+      GITHUB_TOKEN: "${GITHUB_TOKEN}"
+    
+  google_maps:
+    type: stdio
+    command: "npx"
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-google-maps"
+    env:
+      GOOGLE_MAPS_API_KEY: "${GOOGLE_MAPS_API_KEY}"
+    
+  airbnb:
+    type: stdio
+    command: "npx"
+    args:
+      - "-y"
+      - "@openbnb/mcp-server-airbnb"
+      - "--ignore-robots-txt"
+    
+  slack:
+    type: stdio
+    command: "npx"
+    args:
+      - "-y"
+      - "@modelcontextprotocol/server-slack"
+    env:
+      SLACK_TOKEN: "${SLACK_TOKEN}"
+  
+  # Custom ServiceOpsAI tools server
+  custom_tools:
+    type: stdio
+    command: "python"
+    args:
+      - "/Users/neelbhatt/PycharmProjects/ServiceOpsAI/mcp-server/custom_tools_server.py"
